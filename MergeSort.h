@@ -13,7 +13,7 @@ class MergeSort
 	void seqMSort(std::vector<int>& a);
 	void parMSort(std::vector<int>& a);
 
-	double meassuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(std::vector<int>& a));
+	double measuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(std::vector<int>& a));
 
 public:
 

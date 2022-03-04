@@ -48,7 +48,7 @@ void MergeSort::parMSort(std::vector<int>& a)
 	// TODO implement parallel merge sort
 }
 
-double MergeSort::meassuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(std::vector<int>& a))
+double MergeSort::measuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(std::vector<int>& a))
 {
 	auto start = chrono::high_resolution_clock::now();
 
@@ -62,12 +62,12 @@ double MergeSort::meassuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(
 
 double MergeSort::seqMergeSort(std::vector<int>& a)
 {
-	return meassuredSort(a, &MergeSort::seqMSort);
+	return measuredSort(a, &MergeSort::seqMSort);
 }
 
 double MergeSort::parMergeSort(std::vector<int>& a)
 {
-	return meassuredSort(a, &MergeSort::parMSort);
+	return measuredSort(a, &MergeSort::parMSort);
 }
 
 bool MergeSort::proove(std::vector<int>& a)
