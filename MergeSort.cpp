@@ -5,11 +5,9 @@
 #include <random>
 #include <omp.h>
 
-using namespace std;
-
 void MergeSort::mMerge(std::vector<int>& a, uint64_t beg, uint64_t m, uint64_t end)
 {
-	vector<int> b(end - beg, 0);
+	std::vector<int> b(end - beg, 0);
 	uint64_t i = 0, j = beg, k = m;
 	while (j < m && k < end)
 		if (a[j] <= a[k])
@@ -50,11 +48,11 @@ void MergeSort::parMSort(std::vector<int>& a)
 
 double MergeSort::measuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(std::vector<int>& a))
 {
-	auto start = chrono::high_resolution_clock::now();
+	auto start = std::chrono::high_resolution_clock::now();
 
 	(this->*sortFunc)(a);
 
-	auto stop = chrono::high_resolution_clock::now();
+	auto stop = std::chrono::high_resolution_clock::now();
 
 	return (double)(stop - start).count();
 }
@@ -82,12 +80,12 @@ bool MergeSort::proove(std::vector<int>& a)
 
 std::vector<int> MergeSort::createRandomData(uint64_t size) {
 
-	vector<int> data(size, 0);
+	std::vector<int> data(size, 0);
 
 	// random gen
-	default_random_engine generator;
-	uniform_int_distribution<int> distribution(0, (int)size);
-	generator.seed(chrono::system_clock::now().time_since_epoch().count());
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(0, (int)size);
+	generator.seed((unsigned)std::chrono::system_clock::now().time_since_epoch().count());
 
 	for (int i = 0; i < size; ++i) {
 		data[i] = distribution(generator);
