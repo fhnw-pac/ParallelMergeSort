@@ -54,7 +54,7 @@ double MergeSort::measuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(s
 
 	auto stop = std::chrono::high_resolution_clock::now();
 
-	return (double)(stop - start).count();
+	return (double)std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
 }
 
 

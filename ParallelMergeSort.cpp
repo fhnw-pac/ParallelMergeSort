@@ -23,7 +23,7 @@ int main() {
 		exit(-42);
 	}
 
-	std::cout << "sorted seq in " << seqTime / 1000 << "ms" << std::endl;
-	std::cout << "sorted par in " << parTime / 1000 << "ms" << std::endl;
+	std::cout << "sorted seq in " << seqTime << "ms" << std::endl;
+	std::cout << "sorted par in " << parTime << "ms" << std::endl;
 	std::cout << "speedup is " << seqTime / parTime << std::endl;
 }
