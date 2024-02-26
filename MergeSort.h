@@ -12,13 +12,16 @@ class MergeSort
 
 	void seqMSort(std::vector<int>& a);
 	void parMSort(std::vector<int>& a);
+	void ompMSort(std::vector<int>& a);
 
-	double measuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(std::vector<int>& a));
+	uint64_t measuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(std::vector<int>& a));
 
 public:
 
-	double seqMergeSort(std::vector<int>& a);
-	double parMergeSort(std::vector<int>& a);
-	bool proove(std::vector<int>& a);
+	uint64_t seqMergeSort(std::vector<int>& a);
+	uint64_t parMergeSort(std::vector<int>& a);
+	uint64_t ompMergeSort(std::vector<int>& a);
+	bool prove(std::vector<int>& a);
+	bool equal(std::vector<int>& a, std::vector<int>& b);
 	std::vector<int> createRandomData(uint64_t size);
 };

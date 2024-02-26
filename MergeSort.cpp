@@ -43,10 +43,21 @@ void MergeSort::parMSort(std::vector<int>& a)
 {
 	assert(a.size() % NO_OF_THREADS == 0);
 	
-	// TODO implement parallel merge sort
+	// TODO implement parallel merge sort with std::thread
+
+	throw "NOT_IMPLEMENTED";
 }
 
-double MergeSort::measuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(std::vector<int>& a))
+void MergeSort::ompMSort(std::vector<int>& a)
+{
+	assert(a.size() % NO_OF_THREADS == 0);
+
+	// TODO implement parallel merge sort with OMP
+
+	throw "NOT_IMPLEMENTED";
+}
+
+uint64_t MergeSort::measuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(std::vector<int>& a))
 {
 	auto start = std::chrono::high_resolution_clock::now();
 
@@ -54,21 +65,26 @@ double MergeSort::measuredSort(std::vector<int>& a, void(MergeSort::*sortFunc)(s
 
 	auto stop = std::chrono::high_resolution_clock::now();
 
-	return (double)std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+	return std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
 }
 
 
-double MergeSort::seqMergeSort(std::vector<int>& a)
+uint64_t MergeSort::seqMergeSort(std::vector<int>& a)
 {
 	return measuredSort(a, &MergeSort::seqMSort);
 }
 
-double MergeSort::parMergeSort(std::vector<int>& a)
+uint64_t MergeSort::parMergeSort(std::vector<int>& a)
 {
 	return measuredSort(a, &MergeSort::parMSort);
 }
 
-bool MergeSort::proove(std::vector<int>& a)
+uint64_t MergeSort::ompMergeSort(std::vector<int>& a)
+{
+	return measuredSort(a, &MergeSort::ompMSort);
+}
+
+bool MergeSort::prove(std::vector<int>& a)
 {
 	for (uint64_t i = 0; i < a.size() - 1; ++i) {
 		if (a[i] > a[i + 1])
@@ -76,6 +92,18 @@ bool MergeSort::proove(std::vector<int>& a)
 	}
 
 	return true;
+}
+
+bool MergeSort::equal(std::vector<int>& a, std::vector<int>& b)
+{
+	assert(a.size() == b.size());
+	bool ret = true;
+
+	for (int i = 0; i < a.size(); ++i) {
+		ret &= a[i] == b[i];
+	}
+
+	return ret;
 }
 
 std::vector<int> MergeSort::createRandomData(uint64_t size) {
